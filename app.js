@@ -2,6 +2,7 @@
 const express=require("express");
 require("dotenv").config();
 const ejs=require("ejs");
+const _=require("lodash");
 const mongoose=require("mongoose");
 const body=require("body-parser");
 const session=require("express-session");
@@ -68,8 +69,7 @@ passport.use(new GoogleStrategy({
     userProfileURL:"https://www.googleapis.com/oauth2/v3/userinfo"
   },
   function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ googleId: profile.id,name:profile.displayName}, function (err, user) {
-      console.log(profile);
+    User.findOrCreate({ googleId: profile.id,name:(_.capitalize(profile.name.givenName))}, function (err, user) {
       return cb(err, user);
     });
   }
@@ -128,7 +128,7 @@ app.get("/submit",(req,res)=>{
 
 
 app.post("/register",function(req,res){
-    User.register({username:req.body.username,name:req.body.name},req.body.password,function(err,val){
+    User.register({username:req.body.username,name:_.capitalize(req.body.name)},req.body.password,function(err,val){
         if(err){
             console.log(err);
             res.redirect("/");
