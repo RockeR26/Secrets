@@ -33,7 +33,12 @@ const userSchema=new mongoose.Schema({
     username:String,
     password:String,
     googleId:String
-});
+}, {
+    writeConcern: {
+      w: 'majority',
+      j: true,
+      wtimeout: 1000
+    }});
 const secretSchema=new mongoose.Schema({
     content:String,
     name:String
