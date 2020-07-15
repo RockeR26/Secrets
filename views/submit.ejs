@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <div class="jumbotron text-center">
+    <i class="fas fa-key fa-6x"></i>
+    <h1 class="display-3">Secrets</h1>
+    <p class="secret-text">Don't keep your secrets, share them anonymously!</p>
+
+    <form action="/submit" method="POST">
+
+      <div class="form-group">
+        <textarea  type="text" class="form-control" name="secret" rows="5" placeholder="What's your secret?"></textarea>
+        <br>
+        <input type="text" class="form-control" name="secret_name" placeholder="Enter your secret name(optional)">
+      </div>
+      <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+
+
+  </div>
+</div>
+<%- include('partials/footer') %>
