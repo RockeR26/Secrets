@@ -125,6 +125,7 @@ app.get("/submit",(req,res)=>{
 app.post("/register",function(req,res){
     User.register({username:req.body.username,name:req.body.name},req.body.password,function(err,val){
         if(err){
+            console.log(err);
             res.redirect("/");
         }else{
             val.save();
