@@ -42,7 +42,9 @@ const userSchema=new mongoose.Schema({
     }});
 const secretSchema=new mongoose.Schema({
     content:String,
-    name:String
+    name:String,
+    img:Number,
+    date:Date
 });
 const Secret=mongoose.model("Secret",secretSchema);
 
@@ -161,13 +163,20 @@ app.post("/submit",(req,res)=>{
     const content=req.body.secret;
     let secretName="Anonymous"
     if(req.body.secret_name!==""){secretName=req.body.secret_name}
-    
-    newSecret=new Secret({
-        content:content,
-        name:secretName
+    let arr=[1063,1041,1044,600,127,128];
+    let img=arr[Math.floor(Math.random()*arr.length)];
+    Secret.findOne({},{},{sort:{date:1}},function(err,val){
+        if(img===val.img){img=400;}
+        newSecret=new Secret({
+            content:content,
+            name:secretName,
+            img:img,
+            date:new Date()
+        });
+        newSecret.save();
+        res.redirect("/secrets");
     });
-    newSecret.save();
-    res.redirect("/secrets");
-      
 });
 app.listen(process.env.PORT||8000,()=>console.log("port 8000 is active"));
+
+
