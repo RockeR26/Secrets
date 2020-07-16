@@ -132,7 +132,6 @@ app.get("/submit",(req,res)=>{
 app.post("/register",function(req,res){
     User.register({username:req.body.username,name:_.capitalize(req.body.name)},req.body.password,function(err,val){
         if(err){
-            console.log(err);
             res.redirect("/");
         }else{
             val.save();
@@ -154,7 +153,6 @@ app.post("/login",function(req,res){
                 res.redirect("/secrets");
             });
         }else{ 
-            console.log(err);
             res.redirect("/login");
         }
     });   
