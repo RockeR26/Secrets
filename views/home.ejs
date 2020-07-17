@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
-
-
+<div id="load">
+</div>
 <div class="jumbotron centered">
   <div class="container">
     <i class="fas fa-key fa-6x"></i>
@@ -12,5 +12,9 @@
 
   </div>
 </div>
-
+<script>
+  function loader(){
+    document.getElementById("load").style.display="none";
+  }
+</script>
 <%- include('partials/footer') %>

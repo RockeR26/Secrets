@@ -23,3 +23,19 @@ body {
   width: 350px;
   padding-top: 70px;
 }
+footer{
+  position: absolute;
+  left: 44%;
+  height: 10px;
+}
+.page{
+  height: 100vh;
+}
+#load{
+  width:100%;
+  height: 100vh;
+  background-image: url("https://media.tenor.com/images/7d9cb36e95124fb829ff8f2450c3a567/tenor.gif");
+  background-color: white;
+  background-repeat:no-repeat;
+  background-position: center;
+}
